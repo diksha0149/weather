@@ -18,30 +18,38 @@
     <div class="weather">
         <input type="text" id="place_name" class="place" placeholder="Type a city" />
         <button id="bttn" type="submit">Search</button>
-        <div class="info">
-            <h2 id="city_name">Indore, India</h2>
-            <h2 id="time"></h2>
-            <h3 id="type">Partly cloudy</h3>
-        </div>
-        <div class="half">
-            <div class="temp">
-                <h1 class="clouds">🌧️</h1>
-                <h1 class="tt">19</h1>
-                <p id="cel"><a href="#">&#176;C </a></p>
-                <p> / </p>
-                <p id="faren"><a href="#"> &#176;F </a></p>
+        <div class="middle">
+            <div class="info">
+                <h2 id="city_name">Indore, India</h2>
+                <h2 id="time"></h2>
+                <h3 id="type">Partly cloudy</h3>
             </div>
-            <div class="about_temp">
-                <h2>Preceiption : 1%</h2>
-                <h2>Humadity : 80%</h2>
-                <h2>Wind : 7km/hr</h2>
+            <div class="upperhalf">
+                <div class="temp">
+                    <!-- <img src="http://openweathermap.org/img/wn/50n@2x.png" class="clouds" id="clouds"> -->
+                    <h1 class="tt">19</h1>
+                    <p id="cel"><a href="#" title="convert temp in celcius">&#176;C </a></p>
+                    <p> / </p>
+                    <p id="faren"><a href="#" title="convert temp in farenheit"> &#176;F </a></p>
+                </div>
+                <div class="about_temp">
+                    <h2>Preceiption : <span id="prec">1</span>%</h2>
+                    <h2>Humadity : <span id="huma">80</span>%</h2>
+                    <h2>Wind : <span id="wind">7</span>km/hr</h2>
+                </div>
             </div>
         </div>
-        <a href="https://github.com/diksha0149/weather">Open-Source code </a><span>by Diksha Patidar</span>
-    </div>
-    
-    <script src="plus_4.js"></script>
-   
+        <!-- <div class="half">
+            <div class="img-container">
+                <h1 id="nme"></h1>
+                <img id="icon" style="position: absolute;">
+                <div style="position: absolute;" id="long"><span id="max">45 </span> <span id="min"> 38</span></div>
+                <img id="image">
+            </div>
+        </div> -->
+
+        <script src="plus_4.js"></script>
+
 
 </body>
 
