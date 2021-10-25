@@ -1,0 +1,67 @@
+// window.onload = dailyforecast;
+function dailyforecast(response){
+    
+    // console.log( response.data.weather[0].main);
+     let forecastinfo =  response.data.daily;
+     let imgicon = response.data;
+     let rows = document.querySelector(".half");
+      rows = `<div class="img-container">
+      <h1 id="nme"></h1>
+      <div id="icon" style="position: absolute;"></div>
+       <img src="http://openweathermap.org/img/wn/50n@2x.png" id="clouds" >
+     <div style="position: absolute;" id="long"><span id="max">45</span>  /    <span id="min">    38</span></div>
+     <div id="image"></div>
+ </div>`+ `</div>`;
+    // console.log(forecastinfo);
+    //  let i=0;
+    //  forecastinfo.forEach(function(forecastdaay){
+    //      forecastdays[i]=forecastdaay.dt;
+    //      mintemp[i]=forecastdaay.temp.min;
+    //      maxtemp[i]=forecastdaay.temp.max;
+    //      clods[i]=imgicon.weather[0].icon;
+    //      i++;
+    //  })
+    // }
+   
+   //  let x = response.data.weather[0].main;
+   //   if(x=="Clear"){
+   //     image.setAttribute("src", `clearsky.jpg`);
+   //   }
+   //   else  if(x=="Haze"){
+   //     image.setAttribute("src", `haze.jpg`);
+   //   }
+   //   else  if(x=="Cloud"){
+   //     image.setAttribute("src", `clouds.jpg`);
+   //   }
+   //   else  if(x=="Rain"){
+   //     image.setAttribute("src", `rain.jpg`);
+   //   }
+   //   else  if(x=="Thunderstorm"){
+   //     image.setAttribute("src", `16.jpg`);
+   //   }
+   //   else  if(x=="Snow"){
+   //     image.setAttribute("src", `snow.jpg`);
+   //   }
+   var k=0;
+
+   //slideshow();
+// function slideshow() {
+//     let clouds = document.getElementById("clouds");
+//     document.getElementById(clssname).id=images[k];
+//     clssname = images[k];
+//      document.getElementById('nme').innerHTML = forecastdays[i];
+//       document.getElementById('max').innerHTML=maxtemp[k];
+//       clouds.setAttribute("src", `http://openweathermap.org/img/wn/${clods[k]}@2x.png`);
+//       console.log(mintemp[k]);
+   
+//      document.getElementById('min').innerHTML=mintemp[k];
+//     if (k <= forecastdays.length-1) {
+//         k++;
+//     }
+//     else {
+//         k = 0;
+//     }
+//     //document.getElementById(clssname).id="image";
+//     setTimeout("slideshow()", 2000);
+// }
+// slideshow();

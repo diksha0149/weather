@@ -1,21 +1,13 @@
-var images = ['15.jpg', '16.jpg', '17.jpg', '18.jpg'];
-var name1 = ["abcd", "bcde", "efgh", "ijkl"];
-var i = 0;
-function slideshow() {
+var input = document.getElementsByClassName("place")[0];
+var clickbutt;
+input.addEventListener("keyup", function(event) {
+  if (event.key === 'Enter') {
+   event.preventDefault();
+   document.getElementById("bttn").click();
+    clickbutt = true;
+  }
+});
 
-    document.getElementById('image').src = images[i];
-    document.getElementById('nme').innerHTML = name1[i];
-    if (i < images.length - 1) {
-        i++;
-    }
-    else {
-        i = 0;
-    }
-    setTimeout('nme',2050);
-    setTimeout("slideshow()", 2000);
-}
-
-window.onload = slideshow;
 
 
 let now = new Date();
@@ -26,48 +18,53 @@ let hr = now.getHours();
 let h2 = document.querySelector("#time");
 h2.innerHTML = `${week_day} ${hr}:${min}`;
 let search = document.querySelector("#bttn");
-let clouds = document.getElementById("clouds");
+
 let wind = document.getElementById("wind");
 let prec = document.getElementById("prec");
 let huma = document.getElementById("huma");
 
-function dailyforecast(response){
-      console.log( response.data.weather[0].main);
-    //  let x = response.data.weather[0].main;
-    //   if(x=="Clear"){
-    //     image.setAttribute("src", `clearsky.jpg`);
-    //   }
-    //   else  if(x=="Haze"){
-    //     image.setAttribute("src", `haze.jpg`);
-    //   }
-    //   else  if(x=="Cloud"){
-    //     image.setAttribute("src", `clouds.jpg`);
-    //   }
-    //   else  if(x=="Rain"){
-    //     image.setAttribute("src", `rain.jpg`);
-    //   }
-    //   else  if(x=="Thunderstorm"){
-    //     image.setAttribute("src", `16.jpg`);
-    //   }
-    //   else  if(x=="Snow"){
-    //     image.setAttribute("src", `snow.jpg`);
-    //   }
-
+function formatDate(timestamp){
+   let date = new Date(timestamp*1000);
+   let day =date.getDay();
+   let days =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+   return days[day];
 }
 
-function getforecast(response){
-    let lon=response.data.coord.lon;
-    let lat=response.data.coord.lat;
+function displayforecast(response){
+    let forecast  = response.data.daily;
+    let forecastElement = document.querySelector(".half");
+    var k=0;
+    let forecastHTML = "";
+    forecast.forEach(function(forecastday, index){
+        if(index>=1 && index<7){
+       forecastHTML =
+         forecastHTML  +  `<div class="img-container">
+        <div id="nme" style="position: absolute;">${formatDate(forecastday.dt)}</div>
+        <img src="http://openweathermap.org/img/wn/${forecastday.weather[0].icon}@2x.png" id="clouds" >
+        <div id="long"><span id="max">${Math.round(forecastday.temp.max)} &#176;</span>/     <span id="min">    ${Math.round(forecastday.temp.max)}&#176;</span></div>
+        <div id="image"></div>
+        </div>`;
+       
+        k++; 
+        }
+    });
+    forecastElement.innerHTML = forecastHTML;
+}
+
+
+function getforecast(coordinates){
     let apikey = "e06d37c769b284a84a2351c1e02078e7";
-    let forecastapi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`;
-    axios.get(forecastapi).then(dailyforecast);
+    let forecastapi = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&units=metric`;
+    axios.get(forecastapi).then(displayforecast);
 }
 
 
 function change(event) {
     event.preventDefault();
-    let city = document.querySelector("#place_name").value;
+    let city = "Indore";
+    city = document.querySelector("#place_name").value;
     city = city.toUpperCase();
+
     let a2 = document.querySelector("#city_name");
     a2.innerHTML = city;
     let apikey = "e06d37c769b284a84a2351c1e02078e7";
@@ -75,21 +72,20 @@ function change(event) {
     function showTemperature(response) {
         let temperature = document.querySelector(".tt");
         let weather = document.querySelector("#type");
-        let imgicon = response.data.weather[0].icon;
-        // clouds.setAttribute("src", `http://openweathermap.org/img/wn/${imgicon}@2x.png`);
+       
         temperature.innerHTML = Math.round(response.data.main.temp);
         console.log(response);
         weather.innerHTML = response.data.weather[0].main;
         huma.innerHTML = response.data.main.humidity;
         console.log(response.data.main.humidity);
         wind.innerHTML = response.data.wind.speed;
-        getforecast(response);
+        getforecast(response.data.coord);
        
     }
     axios.get(apiurl).then(showTemperature);
 }
 
-let clickbutt = true;
+
 
 function far(event) {
     if (clickbutt === true) {
@@ -122,5 +118,3 @@ let farenchange = document.querySelector("#faren");
 farenchange.addEventListener("click", far);
 let celschange = document.querySelector("#cel");
 celschange.addEventListener("click", cels);
-
-
