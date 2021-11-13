@@ -23,25 +23,6 @@ function dailyforecast(response){
     //  })
     // }
    
-   //  let x = response.data.weather[0].main;
-   //   if(x=="Clear"){
-   //     image.setAttribute("src", `clearsky.jpg`);
-   //   }
-   //   else  if(x=="Haze"){
-   //     image.setAttribute("src", `haze.jpg`);
-   //   }
-   //   else  if(x=="Cloud"){
-   //     image.setAttribute("src", `clouds.jpg`);
-   //   }
-   //   else  if(x=="Rain"){
-   //     image.setAttribute("src", `rain.jpg`);
-   //   }
-   //   else  if(x=="Thunderstorm"){
-   //     image.setAttribute("src", `16.jpg`);
-   //   }
-   //   else  if(x=="Snow"){
-   //     image.setAttribute("src", `snow.jpg`);
-   //   }
    var k=0;
 
    //slideshow();

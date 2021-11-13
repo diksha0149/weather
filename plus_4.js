@@ -61,29 +61,37 @@ function getforecast(coordinates){
 
 function change(event) {
     event.preventDefault();
-    let city = "Indore";
-    city = document.querySelector("#place_name").value;
-    city = city.toUpperCase();
-
+    let city = document.querySelector("#place_name").value;
+    searchCity(city);
+  }
+  
+  function showTemperature(response) {
+    let temperature = document.querySelector(".tt");
+    let weather = document.querySelector("#type");
     let a2 = document.querySelector("#city_name");
-    a2.innerHTML = city;
+  
+    a2.innerHTML = response.data.name;
+    temperature.innerHTML = Math.round(response.data.main.temp);
+    console.log(response);
+    weather.innerHTML = response.data.weather[0].main;
+    huma.innerHTML = response.data.main.humidity;
+    console.log(response.data.main.humidity);
+    wind.innerHTML = response.data.wind.speed;
+    getforecast(response.data.coord);
+  }
+  
+  function searchCity(city) {
     let apikey = "e06d37c769b284a84a2351c1e02078e7";
-    let apiurl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apikey + "&units=metric";
-    function showTemperature(response) {
-        let temperature = document.querySelector(".tt");
-        let weather = document.querySelector("#type");
-       
-        temperature.innerHTML = Math.round(response.data.main.temp);
-        console.log(response);
-        weather.innerHTML = response.data.weather[0].main;
-        huma.innerHTML = response.data.main.humidity;
-        console.log(response.data.main.humidity);
-        wind.innerHTML = response.data.wind.speed;
-        getforecast(response.data.coord);
-       
-    }
+    let apiurl =
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&appid=" +
+      apikey +
+      "&units=metric";
     axios.get(apiurl).then(showTemperature);
-}
+  }
+  
+  searchCity("Indore");
 
 
 

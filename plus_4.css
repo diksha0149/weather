@@ -163,10 +163,10 @@ span{
     text-decoration-color: black;
     color: black;
 }
-@media(max-width:999px){
+@media(max-width:1005px){
     .weather{
        
-        height: 600px;
+        height: 650px;
     }
     .half{
         position: absolute;
@@ -202,26 +202,33 @@ span{
       position: absolute;
       top: 75%;
   }
+  .half{
+      top: auto;
+      margin-top: 70px;
+    grid-template-columns: 1fr 1fr 1fr ;
+   grid-template-rows: 1fr 1fr; 
+}
 }
 @media(max-width:576px){
     .weather{
         width: 65%;
-        height: 600px;
+        height: 650px;
     }
     input{
         font-size: 15px;
     }
+    
   }
 @media(max-width:410px){
     .weather{
         width: 70%;
-        height: 600px;
+        height: 650px;
     }
     input{
         font-size: 15px;
     }
     .half{
-        top: 75%;
+        top: auto;
     }
   }   
 @media(max-width:382px){
